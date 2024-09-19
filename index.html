@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Impact Partners </title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #27343A;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #FFFFFF;
+            color: #27343A;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            max-height: 40px;
+            width: auto;
+        }
+        h1 {
+            margin: 0;
+            color: #703E7A;
+            font-size: 1.5em;
+        }
+        #vision {
+            margin: 0;
+            padding: 10px;
+            background-color: #c1d82e;
+            color: #27343A;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        #container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #main-content {
+            width: 70%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        #map, #video, #anniversary-video, #state-map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            object-fit: contain;
+        }
+        #map.active, #video.active, #anniversary-video.active, #state-map.active {
+            display: block;
+        }
+        #video, #anniversary-video {
+            background-color: black;
+        }
+        #data-table-container {
+            width: 30%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        #data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8em;
+        }
+        #data-table th, #data-table td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+        #data-table th {
+            background-color: #1096D7;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        #data-table tbody {
+            display: block;
+            height: calc(100% - 50px);
+            overflow-y: auto;
+        }
+        #data-table thead, #data-table tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        #back-to-top {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #1096D7;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            font-size: 0.8em;
+        }
+        #back-to-top:hover {
+            opacity: 0.8;
+        }
+        .county-label {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="SIP-logo-for-web-1.png" alt="Social Impact Partners Logo" class="logo">
+        <h1>Social Impact Partners</h1>
+    </header>
+
+    <div id="vision" role="region" aria-label="Our Vision">
+        Our Vision is a thriving Connecticut where every person has equitable access to a high-quality education and a sustainable livelihood.
+    </div>
+
+    <div id="container">
+        <div id="main-content">
+            <div id="map" class="active"></div>
+            <video id="video" muted controls autoplay>
+                <source src="Website-HP-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="anniversary-video" muted controls autoplay>
+                <source src="SVP 10TH Anniversary Deck (Slides for Rotation)_FINAL (2).mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="state-map"></div>
+        </div>
+        <div id="data-table-container">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Town</th>
+                        <th>County</th>
+                        <th>Partners</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="mapdata.js"></script>
+    <script src="statemap.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
